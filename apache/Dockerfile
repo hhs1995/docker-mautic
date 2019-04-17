@@ -1,7 +1,8 @@
 FROM php:7.1-apache
+ENV PORT 8080
 
 LABEL vendor="Mautic"
-LABEL maintainer="Luiz Eduardo Oliveira Fonseca <luiz@powertic.com>"
+LABEL maintainer="vbosstech@gmail.com"
 
 # Install PHP extensions
 RUN apt-get update && apt-get install --no-install-recommends -y \
@@ -33,8 +34,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin -
 VOLUME /var/www/html
 
 # Define Mautic version and expected SHA1 signature
-ENV MAUTIC_VERSION 2.15.0
-ENV MAUTIC_SHA1 b07bd42bb092cc96785d2541b33700b55f74ece7
+ENV MAUTIC_VERSION 2.15.1
+ENV MAUTIC_SHA1 1fbf6f99a64d6da71a8c09a43576093b077913e2
 
 # By default enable cron jobs
 ENV MAUTIC_RUN_CRON_JOBS true
@@ -65,4 +66,5 @@ RUN a2enmod rewrite
 RUN ["chmod", "+x", "/entrypoint.sh"]
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["apache2-foreground"]
+# CMD ["apache2-foreground"]
+CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf && docker-php-entrypoint apache2-foreground
