@@ -1,49 +1,51 @@
-Docker Mautic Image
+[Docker Image] Mautic Digital Marketing Automation on Amazon AWS
 ===================
-<img src="https://www.mautic.org/media/images/github_readme.png" />
+<img src="README/docker-mautic.png" />
 
-# License
+## How to use this image
 
-Mautic is distributed under the GPL v3 license. Full details of the license can be found in the [Mautic GitHub repository](https://github.com/mautic/mautic/blob/staging/LICENSE.txt).
+You can access and customize Docker Mautic from [Official Docker Hub image](https://hub.docker.com/u/vbosstech/mautic/).
 
-# How to use this image
+* [x] Setup Automated Builds using [GitHub](https://github.com/vbosstech/docker-mautic) and [Docker Hub](https://hub.docker.com/u/vbosstech)
+* 
 
-You can access and customize Docker Mautic from [Official Docker Hub image](https://hub.docker.com/r/mautic/mautic/).
 
-# Pulling image from Docker Hub
+## Pulling image from Docker Hub
 
 If you want yo pull the latest stable image from DockerHub:
 
-	docker pull mautic/mautic:latest
+	# docker pull mautic/mautic:latest
+	docker pull mautic/mautic:fpm
 
 There are also another images that fit your needs:
 
-| Tag | PHP | Web Server | Compatibility |
-|-----|:-----:|:------------:|:---------------:|
-| latest | 7.1.23 | Apache | <= 2.15.0 |
-| apache | 7.1.23 | Apache | <= 2.15.0 |
-| fpm | 7.1.23 | Nginx | <= 2.15.0 |
-| beta-apache | 7.2.12 | Apache | >= 2.15.0 |
-| beta-fpm | 7.2.12 | Nginx | >= 2.15.0 |
+| Tag         | PHP    | Web Server | Compatibility |
+|-------------|:------:|:----------:|:---------------:|
+| fpm         | 7.1.23 | Nginx      | <= 2.15.0 |
+| latest      | 7.1.23 | Apache     | <= 2.15.0 |
+| apache      | 7.1.23 | Apache     | <= 2.15.0 |
+|             |        |            | >= 2.15.0 |
+| beta-apache | 7.2.12 | Apache     | >= 2.15.0 |
+| beta-fpm    | 7.2.12 | Nginx      | >= 2.15.0 |
 
-**You can use the beta images to test latest beta releases of Mautic with current PHP version.**
+*You can use the beta images to test latest beta releases of Mautic with current PHP version.*
 
-# Running Basic Container
+## Running Basic Container
 
 Setting up MySQL Server:
 
 	$ docker volume create mysql_data
 
 	$ docker run --name percona -d \
-        -p 3306:3306 \
-        -e MYSQL_ROOT_PASSWORD=mypassword \
-        -v mysql_data:/var/lib/mysql \
-        percona/percona-server:5.7 \
-         --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+         -p 3306:3306 \
+         -e MYSQL_ROOT_PASSWORD=Job4U \
+         -v mysql_data:/var/lib/mysql \
+         percona/percona-server:5.7 \
+         --character-set-server=utf8 --collation-server=utf8_general_ci
 
 Running Mautic:
 
-	$ docker volume create mautic_data
+	$ docker volume create marketing_data
 
 	$ docker run --name mautic -d \
         --restart=always \
@@ -54,7 +56,7 @@ Running Mautic:
         -e MAUTIC_RUN_CRON_JOBS=true \
         -e MAUTIC_TRUSTED_PROXIES=0.0.0.0/0 \
         -p 8080:80 \
-        -v mautic_data:/var/www/html \
+        -v marketing_data:/var/www/html \
         mautic/mautic:latest
 
 This will run a basic mysql service within Mautic on http://localhost:8080.
@@ -116,7 +118,7 @@ Example `docker-compose.yml` for `mautic`:
 	  ports:
 	    - 8080:80
 		volumes:
-	    - mautic_data:/var/www/html
+	    - marketing_data:/var/www/html
 		environment:
 	    - MAUTIC_DB_HOST=127.0.0.1
 	    - MAUTIC_DB_USER=root
@@ -135,17 +137,3 @@ Run `docker-compose up`, wait for it to initialize completely, and visit `http:/
 This image is officially supported on Docker version 1.7.1.
 
 Support for older versions (down to 1.0) is provided on a best-effort basis.
-
-# User Feedback
-
-## Issues
-
-If you have any problems with or questions about this image, please contact us through a [GitHub issue](https://github.com/mautic/docker-mautic/issues).
-
-You can also reach the Mautic community through its [online forums](https://www.mautic.org/community/) or the [Mautic Slack channel](https://www.mautic.org/slack/).
-
-## Contributing
-
-You are invited to contribute new features, fixes, or updates, large or small; we are always thrilled to receive pull requests, and do our best to process them as fast as we can.
-
-Before you start to code, we recommend discussing your plans through a [GitHub issue](https://github.com/mautic/docker-mautic/issues), especially for more ambitious contributions. This gives other contributors a chance to point you in the right direction, give you feedback on your design, and help you find out if someone else is working on the same thing.
