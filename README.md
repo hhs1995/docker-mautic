@@ -122,7 +122,7 @@ Example `docker-compose.yml` for `mautic`:
 version: "2"
 services:
   mautic:
-    image: mautic/mautic:latest
+    image: vbosstech/mautic:latest
     container_name: mautic
     depends_on:
       - mauticdb
@@ -134,7 +134,7 @@ services:
       - MAUTIC_DB_HOST=mauticdb
       - MAUTIC_DB_USER=root
       - MAUTIC_DB_PASSWORD=mysqlrootpassword
-	    - MAUTIC_DB_NAME=mautic
+      - MAUTIC_DB_NAME=mautic
 
   mauticdb:
     image: mysql:5.6

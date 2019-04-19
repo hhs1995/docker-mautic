@@ -1,5 +1,5 @@
 mautic:
-  image: mautic/mautic
+  image: vbosstech/mautic
   links:
     - mauticdb:mysql
   ports:

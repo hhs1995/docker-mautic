@@ -2,7 +2,7 @@ version: "2"
 
 services:
   mautic:
-    #image: mautic/mautic
+    #image: vbosstech/mautic
     build: ./
     container_name: mautic
     depends_on:
