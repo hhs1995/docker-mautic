@@ -16,8 +16,8 @@ You can access and customize Docker Mautic from [Official Docker Hub image](http
 
 If you want yo pull the latest stable image from DockerHub:
 
-	# docker pull mautic/mautic:latest
-	docker pull mautic/mautic:fpm
+	# docker pull vbosstech/mautic:latest
+	docker pull vbosstech/mautic:fpm
 
 There are also another images that fit your needs:
 
@@ -59,7 +59,7 @@ Running Mautic:
         -e MAUTIC_TRUSTED_PROXIES=0.0.0.0/0 \
         -p 8080:80 \
         -v marketing_data:/var/www/html \
-        mautic/mautic:latest
+        vbosstech/mautic:latest
 
 This will run a basic mysql service within Mautic on http://localhost:8080.
 
