@@ -2,6 +2,8 @@
 ===================
 <img src="README/docker-mautic.png" />
 
+[![Build Status](https://travis-ci.org/vbosstech/docker-mautic.svg)](https://travis-ci.org/vbosstech/docker-mautic)
+
 ## How to use this image
 
 You can access and customize Docker Mautic from [Official Docker Hub image](https://hub.docker.com/u/vbosstech/mautic/).
@@ -116,24 +118,38 @@ Access your new Mautic on `http://localhost:8080` or `http://host-ip:8080` in a 
 
 Example `docker-compose.yml` for `mautic`:
 
-	mautic:
-	  image: mautic/mautic:latest
-	  links:
-	    - mauticdb:mysql
-	  ports:
-	    - 8080:80
-		volumes:
-	    - marketing_data:/var/www/html
-		environment:
-	    - MAUTIC_DB_HOST=127.0.0.1
-	    - MAUTIC_DB_USER=root
-	    - MAUTIC_DB_PASSWORD=mysecret
+```yml
+version: "2"
+services:
+  mautic:
+    image: mautic/mautic:latest
+    container_name: mautic
+    depends_on:
+      - mauticdb
+    ports:
+      - 8080:80
+    volumes:
+      - mautic_data:/var/www/html
+    environment:
+      - MAUTIC_DB_HOST=mauticdb
+      - MAUTIC_DB_USER=root
+      - MAUTIC_DB_PASSWORD=mysqlrootpassword
 	    - MAUTIC_DB_NAME=mautic
 
-	mauticdb:
-	  image: mysql:5.6
-	  environment:
-	    MYSQL_ROOT_PASSWORD=mysecret
+  mauticdb:
+    image: mysql:5.6
+    container_name: mauticdb
+    ports:
+      - 3306:3306
+    volumes:
+      - mautic_db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysqlrootpassword
+
+volumes:
+  - mautic_data:
+  - mautic_db:			
+```
 
 Run `docker-compose up`, wait for it to initialize completely, and visit `http://localhost:8080` or `http://host-ip:8080`.
 

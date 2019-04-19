@@ -42,3 +42,5 @@ services:
 
 volumes:
   sslcerts:
+  mautic_data:
+  mautic_db:
