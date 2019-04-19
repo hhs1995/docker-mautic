@@ -1,13 +1,16 @@
 #!/bin/bash
 set -e
 
+echo "get current version"
 current="$(curl https://api.github.com/repos/mautic/mautic/releases/latest -s | jq -r .name)"
 
 # TODO - Expose SHA signatures for the packages somewhere
+echo "get current SHA signature"
 # wget -O mautic.zip https://s3.amazonaws.com/mautic/releases/$current.zip
 curl -o mautic.zip -SL https://github.com/mautic/mautic/releases/download/$current/$current.zip
 sha1="$(sha1sum mautic.zip | sed -r 's/ .*//')"
 
+echo "update docker images"
 for variant in apache fpm; do
 	(
 		set -x
@@ -22,4 +25,5 @@ for variant in apache fpm; do
 	)
 done
 
+echo "remove mautic.zip"
 rm mautic.zip

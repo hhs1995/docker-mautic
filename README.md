@@ -158,3 +158,12 @@ Run `docker-compose up`, wait for it to initialize completely, and visit `http:/
 This image is officially supported on Docker version 1.7.1.
 
 Support for older versions (down to 1.0) is provided on a best-effort basis.
+
+## In order to run `update.sh`
+
+```
+  ## Install `jq`
+	brew install jq
+	## Install sha1sum
+  brew install md5sha1sum
+```

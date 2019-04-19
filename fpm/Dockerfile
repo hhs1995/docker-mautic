@@ -1,7 +1,7 @@
 FROM php:7.1-fpm
 
 LABEL vendor="Mautic"
-LABEL maintainer="vbosstech@gmail.com"
+LABEL maintainer="vBossTech <vbosstech@gmail.com>"
 
 # Install PHP extensions
 RUN apt-get update && apt-get install --no-install-recommends -y \
