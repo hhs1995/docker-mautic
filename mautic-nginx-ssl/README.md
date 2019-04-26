@@ -1,12 +1,12 @@
 Configuring Nginx to act as a reverse proxy with SSL support for Mautic container.
 
-## Configuring in `docker-compose.yml`:
+## 1. Configuring in `docker-compose.yml`:
 
 * [x] Setup of **mysql** and **mautic** containers
 * [x] Setup of a **nginx** container with custom vhost configuration `nginx.conf`
 * [ ] Automatic creation of self-signed certificate
 
-## Installing:
+## 2. Installing:
 
 1. run $ ```docker-compose up``` or `docker-compose up -d` in this directory
 2. add this line to your `/etc/hosts` file ```127.0.4.123 mautic.local``` or [MacOS] ```127.0.0.1 mautic.local```
@@ -14,6 +14,22 @@ Configuring Nginx to act as a reverse proxy with SSL support for Mautic containe
 4. add the presented certificate to a trusted certificates list in your browser (the certificate is a self-signed certificate created on the first run of this example)
 5. go through Mautic setup (fill ```mauticdbpass``` as mysql password on db setup page
 6. test Mautic
+
+## Configuring
+
+- After install
+
+```
+  ## login to the docker: 
+  docker exec -it {dockerid} bash
+
+  ## clear the cache: 
+  php app/console cache:clear
+
+  ## set the user ownership to www-data again: 
+  chown -R www-data:www-data /var/www/html/
+```
+
 
 #### Notes
 * The certificate should be made trustworthy. It may not be enough to just click trough the warning in some browsers or $ `curl https://mautic.local --insecure`.
