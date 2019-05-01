@@ -6,13 +6,13 @@ Mautic Digital Marketing Automation on Amazon AWS ECS & Fargate
 
 ## 1. Docker Image
 
-* You can access and customize Docker Mautic from [Official Docker Hub image](https://hub.docker.com/u/vbosstech/mautic/).
+* [x] You can access and customize Docker Mautic from [Official Docker Hub image](https://hub.docker.com/u/vbosstech/mautic/).
 * [x] Setup Automated Builds using [GitHub](https://github.com/vbosstech/docker-mautic) and [Docker Hub](https://hub.docker.com/u/vbosstech)
 
 
 ## 2. How to use this Image: 
 
-- `docker-compose`
+- [x] `docker-compose up`
 
 ```
   git clone https://github.com/vbosstech/docker-mautic.git
