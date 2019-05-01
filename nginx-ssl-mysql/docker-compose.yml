@@ -10,7 +10,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - mautic_data:/var/www/html
+      - volume_web_marketing:/var/www/html
+      # - $PWD/custom:/var/www/html
     environment:
       MAUTIC_DB_HOST: database_marketing
       MAUTIC_DB_NAME: marketing
@@ -24,7 +25,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - mautic_db:/var/lib/mysql
+      - volume_database_marketing:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: MysqlRootPassword
       MYSQL_DATABASE: marketing
@@ -38,7 +39,7 @@ services:
       - "443:443"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
-      - sslcerts:/etc/ssl/private
+      - volume_nginx_sslcerts:/etc/ssl/private
     depends_on:
       - web_marketing
     entrypoint:
@@ -54,6 +55,6 @@ services:
       exec nginx -g 'daemon off;'"
 
 volumes:
-  mautic_data:
-  mautic_db:  
-  sslcerts:
+  volume_web_marketing:
+  volume_database_marketing:  
+  volume_nginx_sslcerts:

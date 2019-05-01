@@ -27,6 +27,7 @@ Configuring **Nginx** to act as a reverse proxy with SSL support for **Mautic** 
   php app/console cache:clear
 
   ## set the user ownership to www-data again: 
+  ## chmod -R 775 /var/www/html
   chown -R www-data:www-data /var/www/html/
 ```
 
