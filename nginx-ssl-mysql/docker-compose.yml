@@ -26,7 +26,7 @@ services:
     volumes:
       - mautic_db:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: Job4U.io031525
+      MYSQL_ROOT_PASSWORD: MysqlRootPassword
       MYSQL_DATABASE: marketing
       MYSQL_USER: marketing
       MYSQL_PASSWORD: Job4U.io
