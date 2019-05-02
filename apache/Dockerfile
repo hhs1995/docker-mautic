@@ -60,7 +60,7 @@ COPY mautic.crontab /etc/cron.d/mautic
 COPY mautic-php.ini /usr/local/etc/php/conf.d/mautic-php.ini
 
 # Copy custom
-COPY ../nginx-ssl-mysql/custom/ /usr/src/mautic/ 
+COPY nginx-ssl-mysql/custom/ /usr/src/mautic/ 
 
 # Increase php memory limit
 RUN echo "memory_limit = 256M" >> /usr/local/etc/php/conf.d/mautic-php.ini
